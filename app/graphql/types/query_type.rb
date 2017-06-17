@@ -16,5 +16,11 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Find a Post by id"
     resolve ->(obj, args, ctx) { Post.find(args["id"]) }
   end
+
+  field :comment do
+    type Types::CommentType
+    argument :id, !types.ID
+    description "Find a Comment by id"
+    resolve ->(obj, args, ctx) { Comment.find(args["id"]) }
   end
 end
