@@ -1,5 +1,12 @@
 GraphqlDemoSchema = GraphQL::Schema.define do
   query(Types::QueryType)
+
+  TextType = GraphQL::ScalarType.define do
+    name 'TEXT'
+    coerce_input ->(x, _context) { x }
+    coerce_result ->(x, _context) { x }
+  end
+
   DateTimeType = GraphQL::ScalarType.define do
     name 'DATETIME'
     coerce_input ->(x, _context) { x }
@@ -7,4 +14,5 @@ GraphqlDemoSchema = GraphQL::Schema.define do
   end
 
   GraphQL::Models::DatabaseTypes.register(:datetime, -> { DateTimeType })
+  GraphQL::Models::DatabaseTypes.register(:text, -> { TextType })
 end
