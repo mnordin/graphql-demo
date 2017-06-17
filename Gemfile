@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'pg', '~> 0.19'
 
 gem 'graphql', '~> 1.6'
+gem 'graphql-activerecord', '~> 0.12'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
