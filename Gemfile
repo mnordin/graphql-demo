@@ -47,6 +47,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_girl_rails', '~> 4.8'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'rspec-graphql_matchers', '~> 0.5'
 end
 
 group :development do
