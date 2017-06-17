@@ -15,4 +15,8 @@ GraphqlDemoSchema = GraphQL::Schema.define do
 
   GraphQL::Models::DatabaseTypes.register(:datetime, -> { DateTimeType })
   GraphQL::Models::DatabaseTypes.register(:text, -> { TextType })
+
+  # Set up the graphql-batch gem
+  lazy_resolve(Promise, :sync)
+  instrument(:query, GraphQL::Batch::Setup)
 end
