@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Try it out
 
-Things you may want to cover:
+Go to https://lit-lake-39706.herokuapp.com/graphiql and try it out for yourself!
 
-* Ruby version
+## Example queries
+(More examples will be added)
 
-* System dependencies
+### Fetching all the posts made by one user and all their comments
+```
+query {
+  user(id: 1) {
+    name
+    posts {
+      title
+      content
+      comments {
+        user {
+          name
+        }
+        content
+      }
+    }
+  }
+}
+```
 
-* Configuration
+## Setting up locally
 
-* Database creation
+```
+bundle install
+rake db:migrate
+rails s
+```
 
-* Database initialization
+### Ruby version
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+2.4.1
