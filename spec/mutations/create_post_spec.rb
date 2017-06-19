@@ -19,9 +19,9 @@ module Mutations
       ).result
 
       expect(result['errors']).to eq(nil)
-      expect(result.dig('data', 'createPost', 'post')).to eq(
-        id: /d+/,
-        title: 'Post title'
+      expect(result.dig('data', 'createPost', 'post')).to match(
+        'id' => an_instance_of(Integer),
+        'title' => 'Post title',
       )
       expect(Post.count).to eq(1)
       expect(Post.first.user).to eq(user)
