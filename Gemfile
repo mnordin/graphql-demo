@@ -21,6 +21,8 @@ gem 'pg', '~> 0.19'
 gem 'graphql', '~> 1.6'
 gem 'graphql-activerecord', '~> 0.12'
 
+gem 'pundit', '~> 1.1'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Use Redis adapter to run Action Cable in production

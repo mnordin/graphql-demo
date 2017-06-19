@@ -18,6 +18,7 @@ Mutations::CreatePost = GraphQL::Relay::Mutation.define do
 
     mutator.apply_changes
     mutator.validate!
+    mutator.authorize!
     mutator.save!
 
     { post: model }
