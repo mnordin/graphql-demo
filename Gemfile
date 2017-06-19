@@ -20,6 +20,7 @@ gem 'pg', '~> 0.19'
 
 gem 'graphql', '~> 1.6'
 gem 'graphql-activerecord', '~> 0.12'
+gem 'graphiql-rails', '~> 1.4'
 
 gem 'pundit', '~> 1.1'
 
@@ -46,7 +47,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'graphiql-rails', '~> 1.4'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
