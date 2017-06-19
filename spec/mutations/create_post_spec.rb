@@ -12,7 +12,7 @@ module Mutations
 
       result = GraphQL::Query.new(
         GraphqlDemoSchema,
-        create_post_query,
+        QUERY,
         context: {
           current_user: user,
         }
@@ -27,20 +27,52 @@ module Mutations
       expect(Post.first.user).to eq(user)
     end
 
-    def create_post_query
-      <<-EOS
-        mutation {
-          createPost(input: {
-            title: "Post title",
-            content: "The post content",
-          }) {
-            post {
-              id
-              title
+    context 'when there is no logged in user' do
+      it 'does not create a Post' do
+        result = GraphQL::Query.new(
+          GraphqlDemoSchema,
+          QUERY,
+          context: {
+            current_user: nil,
+          }
+        ).result
+
+        expect(result.dig('data', 'createPost')).to eq(nil)
+        expect(result['errors'].count).to eq(1)
+        expect(result['errors'].first).to include(
+          'message' => 'Some of your changes could not be saved.',
+          'kind' => 'INVALID_ARGUMENTS',
+          'invalidArguments' => {},
+          'unknownErrors' => [
+            {
+              modelType: "Post",
+              modelRid: nil,
+              attribute: :user,
+              message: "must exist"
+            },
+            {
+              modelType: "Post",
+              modelRid: nil,
+              attribute: :user,
+              message: "can't be blank"
             }
+          ],
+        )
+      end
+    end
+
+    QUERY = <<-EOS
+      mutation {
+        createPost(input: {
+          title: "Post title",
+          content: "The post content",
+        }) {
+          post {
+            id
+            title
           }
         }
-      EOS
-    end
+      }
+    EOS
   end
 end
