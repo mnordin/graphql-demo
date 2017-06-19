@@ -2,14 +2,14 @@ require 'rails_helper'
 
 module Types
   describe UserType, type: :graphql_type do
-    it { expect have_field(:id).that_returns(!types.ID) }
-    it { expect have_field(:first_name).that_returns(types.String) }
-    it { expect have_field(:last_name).that_returns(types.String) }
-    it { expect have_field(:created_at).that_returns(DateTimeType) }
-    it { expect have_field(:updated_at).that_returns(DateTimeType) }
+    it { is_expected.to have_field(:id).of_type(!types.Int) }
+    it { is_expected.to have_field(:firstName).of_type(!types.String) }
+    it { is_expected.to have_field(:lastName).of_type(!types.String) }
+    it { is_expected.to have_field(:createdAt).of_type(!DateTimeType) }
+    it { is_expected.to have_field(:updatedAt).of_type(!DateTimeType) }
 
-    it { expect have_field(:name).that_returns(types.String) }
+    it { is_expected.to have_field(:name).of_type(types.String) }
 
-    it { expect have_field(:posts).that_returns([PostType]) }
+    it { is_expected.to have_field(:posts).of_type(!types[!PostType]) }
   end
 end
