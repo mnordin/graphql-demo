@@ -28,9 +28,10 @@ query {
 
 ## Setting up locally
 
+
 ```
 bundle install
-rake db:migrate
+rake db:setup
 rails s
 ```
 
