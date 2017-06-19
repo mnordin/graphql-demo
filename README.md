@@ -26,6 +26,22 @@ query {
 }
 ```
 
+### Creating a post
+```
+mutation {
+  createPost(input: {title: "Title", content: "Content"}) {
+    post {
+      id
+      title
+      content
+      user {
+        name
+      }
+    }
+  }
+}
+```
+
 ## Setting up locally
 
 

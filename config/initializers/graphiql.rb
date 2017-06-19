@@ -30,4 +30,19 @@ query {
     }
   }
 }
+
+# Or try creating a post with some content
+#
+# mutation {
+#   createPost(input: {title: "Title", content: "Content"}) {
+#     post {
+#       id
+#       title
+#       content
+#       user {
+#         name
+#       }
+#     }
+#   }
+# }
 EOS
