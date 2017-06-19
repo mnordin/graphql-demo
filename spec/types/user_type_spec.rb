@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Types
-  describe UserType, type: :graphql_type do
+  describe UserType, type: :graphql do
     it { is_expected.to have_field(:id).of_type(!types.Int) }
     it { is_expected.to have_field(:firstName).of_type(!types.String) }
     it { is_expected.to have_field(:lastName).of_type(!types.String) }

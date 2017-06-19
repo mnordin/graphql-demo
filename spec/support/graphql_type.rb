@@ -5,5 +5,5 @@ module GraphqlTypeHelper
 end
 
 RSpec.configure do |config|
-  config.include GraphqlTypeHelper, type: :graphql_type
+  config.include GraphqlTypeHelper, type: :graphql
 end

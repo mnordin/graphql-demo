@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Types
-  describe CommentType, type: :graphql_type do
+  describe CommentType, type: :graphql do
     it { is_expected.to have_field(:id).of_type(!types.Int) }
     it { is_expected.to have_field(:content).of_type(!TextType) }
     it { is_expected.to have_field(:createdAt).of_type(!DateTimeType) }

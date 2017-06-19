@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Types
-  describe PostType, type: :graphql_type do
+  describe PostType, type: :graphql do
     it { is_expected.to have_field(:id).of_type(!types.Int) }
     it { is_expected.to have_field(:title).of_type(!types.String) }
     it { is_expected.to have_field(:content).of_type(!TextType) }
