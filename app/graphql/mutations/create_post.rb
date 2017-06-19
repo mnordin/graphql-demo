@@ -13,7 +13,7 @@ Mutations::CreatePost = GraphQL::Relay::Mutation.define do
   return_field :post, Types::PostType
 
   resolve -> (_object, inputs, context) {
-    model = Post.new(user: User.first)
+    model = Post.new(user: context[:current_user])
     mutator = mutator_definition.mutator(model, inputs, context)
 
     mutator.apply_changes
