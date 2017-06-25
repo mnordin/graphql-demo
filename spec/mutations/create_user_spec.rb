@@ -10,7 +10,7 @@ module Mutations
     it 'creates a User' do
       result = GraphQL::Query.new(
         GraphqlDemoSchema,
-        QUERY,
+        CREATE_USER_QUERY,
         context: {},
       ).result
 
@@ -22,7 +22,7 @@ module Mutations
     end
   end
 
-  QUERY = <<-EOS
+  CREATE_USER_QUERY = <<-EOS
     mutation {
       createUser(input: {
         firstName: "First",

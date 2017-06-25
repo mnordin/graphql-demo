@@ -12,7 +12,7 @@ module Mutations
 
       result = GraphQL::Query.new(
         GraphqlDemoSchema,
-        QUERY,
+        CREATE_POST_QUERY,
         context: {
           current_user: user,
         }
@@ -31,7 +31,7 @@ module Mutations
       it 'does not create a Post' do
         result = GraphQL::Query.new(
           GraphqlDemoSchema,
-          QUERY,
+          CREATE_POST_QUERY,
           context: {
             current_user: nil,
           }
@@ -61,7 +61,7 @@ module Mutations
       end
     end
 
-    QUERY = <<-EOS
+    CREATE_POST_QUERY = <<-EOS
       mutation {
         createPost(input: {
           title: "Post title",
