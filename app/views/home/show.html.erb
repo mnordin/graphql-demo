@@ -1,0 +1,18 @@
+<h1>Graphql demo</h1>
+
+<p><%= link_to 'Go to GraphiQL', graphiql_rails_path %></p>
+
+<% if current_user %>
+  <p>Logged in as: <%= current_user.name %></p>
+
+  <%= form_tag session_path, method: :delete do %>
+    <%= submit_tag 'Log out' %>
+  <% end %>
+<% else %>
+  <%= form_tag session_path, method: :post do %>
+    <%= label_tag :user, 'Choose which user to login as' %>
+    <%= select_tag :user_id, options_for_select(@user_select) %>
+
+    <%= submit_tag 'Log in' %>
+  <% end %>
+<% end %>
