@@ -18,13 +18,12 @@ module Mutations
         }
       ).result
 
-      expect(result['errors']).to eq(nil)
-      expect(result.dig('data', 'createPost', 'post')).to match(
-        'id' => an_instance_of(Integer),
-        'title' => 'Post title',
-      )
       expect(Post.count).to eq(1)
       expect(Post.first.user).to eq(user)
+      expect(result.dig('data', 'createPost', 'post')).to include(
+        'title' => 'Post title',
+      )
+      expect(result['errors']).to eq(nil)
     end
 
     context 'when there is no logged in user' do
@@ -37,8 +36,8 @@ module Mutations
           }
         ).result
 
+        expect(Post.count).to eq(0)
         expect(result.dig('data', 'createPost')).to eq(nil)
-        expect(result['errors'].count).to eq(1)
         expect(result['errors'].first).to include(
           'message' => 'Some of your changes could not be saved.',
           'kind' => 'INVALID_ARGUMENTS',

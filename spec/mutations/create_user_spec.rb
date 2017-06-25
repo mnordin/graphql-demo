@@ -15,9 +15,9 @@ module Mutations
       ).result
 
       expect(User.count).to eq(1)
-      expect(
-        result.dig('data', 'createUser', 'user', 'name')
-      ).to eq('First Last')
+      expect(result.dig('data', 'createUser', 'user')).to include(
+        'name' => 'First Last'
+      )
       expect(result['errors']).to eq(nil)
     end
   end
