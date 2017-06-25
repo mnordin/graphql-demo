@@ -27,10 +27,29 @@ query {
 }
 ```
 
-### Creating a post
+### Creating a user
 ```
 mutation {
-  createPost(input: {title: "Title", content: "Content"}) {
+  createUser(input: {
+    firstName: "First",
+    lastName: "Last",
+  }) {
+    user {
+      id
+      name
+    }
+  }
+}
+```
+
+### Creating a post
+(requires you to be authenticated as a user)
+```
+mutation {
+  createPost(input: {
+    title: "Title",
+    content: "Content"
+  }) {
     post {
       id
       title
