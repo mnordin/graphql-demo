@@ -12,33 +12,32 @@ module Mutations
 
       result = GraphQL::Query.new(
         GraphqlDemoSchema,
-        QUERY,
+        CREATE_POST_QUERY,
         context: {
           current_user: user,
         }
       ).result
 
-      expect(result['errors']).to eq(nil)
-      expect(result.dig('data', 'createPost', 'post')).to match(
-        'id' => an_instance_of(Integer),
-        'title' => 'Post title',
-      )
       expect(Post.count).to eq(1)
       expect(Post.first.user).to eq(user)
+      expect(result.dig('data', 'createPost', 'post')).to include(
+        'title' => 'Post title',
+      )
+      expect(result['errors']).to eq(nil)
     end
 
     context 'when there is no logged in user' do
       it 'does not create a Post' do
         result = GraphQL::Query.new(
           GraphqlDemoSchema,
-          QUERY,
+          CREATE_POST_QUERY,
           context: {
             current_user: nil,
           }
         ).result
 
+        expect(Post.count).to eq(0)
         expect(result.dig('data', 'createPost')).to eq(nil)
-        expect(result['errors'].count).to eq(1)
         expect(result['errors'].first).to include(
           'message' => 'Some of your changes could not be saved.',
           'kind' => 'INVALID_ARGUMENTS',
@@ -61,7 +60,7 @@ module Mutations
       end
     end
 
-    QUERY = <<-EOS
+    CREATE_POST_QUERY = <<-EOS
       mutation {
         createPost(input: {
           title: "Post title",
