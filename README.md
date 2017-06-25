@@ -2,7 +2,8 @@
 
 ## Try it out
 
-Go to https://lit-lake-39706.herokuapp.com/graphiql and try it out for yourself!
+Go to [Graphiql](https://lit-lake-39706.herokuapp.com) on heroku and try it out for yourself!
+Some mutations require a logged in user. You can log in as any existing user on the [front page](https://lit-lake-39706.herokuapp.com).
 
 ## Example queries
 (More examples will be added)
